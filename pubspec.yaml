@@ -1,0 +1,31 @@
+name: commuteng
+description: A ride-sharing app for Nigerian 9-to-5 professionals.
+publish_to: 'none'
+version: 0.0.1+0
+
+environment:
+  sdk: '>=3.6.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  image_picker: ^1.0.4
+  intl: ^0.20.2
+  provider: ^6.0.0
+
+dev_dependencies:
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Uncomment and point these at your asset folders when you add them:
+  # assets:
+  #   - assets/images/
+  #
+  # fonts:
+  #   - family: Roboto
+  #     fonts:
+  #       - asset: assets/fonts/Roboto-Regular.ttf
+  #       - asset: assets/fonts/Roboto-Bold.ttf
+  #         weight: 700
