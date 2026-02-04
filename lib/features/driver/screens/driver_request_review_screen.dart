@@ -128,7 +128,7 @@ class DriverRequestReviewScreen extends StatelessWidget {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
+                              SizedBox(
                                 width: 24,
                                 child: Column(
                                   children: [

@@ -66,7 +66,7 @@ class DriverCommuteSummaryScreen extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               
-              Text(
+              const Text(
                 'You helped a commuter and earned money.',
                 style: TextStyle(
                   fontSize: 16,
@@ -88,7 +88,7 @@ class DriverCommuteSummaryScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Text(
+                    const Text(
                       'TOTAL EARNINGS',
                       style: TextStyle(
                         fontSize: 12,
@@ -121,10 +121,10 @@ class DriverCommuteSummaryScreen extends StatelessWidget {
                     color: AppColors.white.withOpacity(0.2),
                   ),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       'Reliability Score',
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
@@ -133,12 +133,12 @@ class DriverCommuteSummaryScreen extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.trending_up,
                           size: 16,
                           color: AppColors.lime400,
                         ),
-                        const SizedBox(width: 4),
+                        SizedBox(width: 4),
                         Text(
                           '+2 pts',
                           style: TextStyle(

@@ -59,10 +59,10 @@ class _RiderActiveRideScreenState extends State<RiderActiveRideScreen> {
       body: Stack(
         children: [
           // Map background
-          Positioned.fill(
+          const Positioned.fill(
             child: Opacity(
               opacity: 0.2,
-              child: const MockMap(
+              child: MockMap(
                 height: double.infinity,
                 showCurrentLocation: true,
               ),
@@ -262,7 +262,7 @@ class _RiderActiveRideScreenState extends State<RiderActiveRideScreen> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
+                            SizedBox(
                               width: 24,
                               child: Column(
                                 children: [
