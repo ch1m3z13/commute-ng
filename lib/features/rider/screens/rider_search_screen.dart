@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/models/models.dart';
 import '../../../core/providers/app_provider.dart';
+import '../../../core/utils/number_utils.dart';
 import '../../../widgets/shared_widgets.dart';
-import 'package:intl/intl.dart';
 
 class RiderSearchScreen extends StatefulWidget {
   const RiderSearchScreen({super.key});
@@ -502,7 +502,7 @@ class _BookingConfirmScreen extends StatelessWidget {
                           ),
                           const SizedBox(width: 12),
                           Text(
-                            'Wallet (₦${NumberFormat("#,##0", "en_NG").format(provider.walletBalance)})',
+                            'Wallet (₦${provider.walletBalance.toLocaleString()})',
                             style: const TextStyle(
                               fontWeight: FontWeight.w500,
                               color: AppColors.slate700,

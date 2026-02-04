@@ -803,7 +803,7 @@ class _CameraView extends StatelessWidget {
                                   right: 0,
                                   child: Container(
                                     height: 4,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: AppColors.emerald500,
                                       boxShadow: [
                                         BoxShadow(

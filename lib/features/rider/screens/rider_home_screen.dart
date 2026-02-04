@@ -53,7 +53,7 @@ class RiderHomeScreen extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Good morning,',
                                     style: TextStyle(
                                       color: AppColors.emerald100,
@@ -125,7 +125,7 @@ class RiderHomeScreen extends StatelessWidget {
                                       size: 24,
                                     ),
                                   ),
-                                  Expanded(
+                                  const Expanded(
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -139,8 +139,8 @@ class RiderHomeScreen extends StatelessWidget {
                                             letterSpacing: 0.5,
                                           ),
                                         ),
-                                        const SizedBox(height: 2),
-                                        const Text(
+                                        SizedBox(height: 2),
+                                        Text(
                                           'Search destination...',
                                           style: TextStyle(
                                             fontSize: 16,
@@ -181,10 +181,10 @@ class RiderHomeScreen extends StatelessWidget {
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
                     // Recent routes section
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
+                        Text(
                           'Recent Routes',
                           style: TextStyle(
                             fontSize: 16,

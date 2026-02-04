@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../../../core/theme/app_theme.dart';
-import '../../../core/providers/app_provider.dart';
 import 'rider_home_screen.dart';
 import 'rider_trips_screen.dart';
 import 'rider_wallet_screen.dart';

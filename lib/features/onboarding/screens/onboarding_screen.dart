@@ -232,7 +232,7 @@ class _SlideContent extends StatelessWidget {
             },
             child: Text(
               slide.subtitle,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 color: AppColors.emerald100,
                 height: 1.5,

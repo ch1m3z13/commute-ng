@@ -121,8 +121,8 @@ class _RoleCardState extends State<_RoleCard>
             color: Colors.white,
             borderRadius: BorderRadius.circular(24),
             border: Border.all(color: AppColors.slate100),
-            boxShadow: [
-              BoxShadow(color: AppColors.slate100, blurRadius: 10, offset: const Offset(0, 4)),
+            boxShadow: const [
+              BoxShadow(color: AppColors.slate100, blurRadius: 10, offset: Offset(0, 4)),
             ],
           ),
           child: Row(

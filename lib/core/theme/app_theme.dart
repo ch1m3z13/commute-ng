@@ -5,6 +5,8 @@ class AppColors {
   // Primary - Emerald
   static const emerald50 = Color(0xFFECFDF5);
   static const emerald100 = Color(0xFFD1FAE5);
+  static const emerald200 = Color(0xFFA7F3D0);
+  static const emerald400 = Color(0xFF34D399);
   static const emerald500 = Color(0xFF10B981);
   static const emerald600 = Color(0xFF059669);
   static const emerald700 = Color(0xFF047857);
@@ -35,6 +37,7 @@ class AppColors {
 
   static const amber100 = Color(0xFFFEF3C7);
   static const amber400 = Color(0xFFFBBF24);
+  static const amber500 = Color(0xFFF59E0B);
   static const amber600 = Color(0xFFD97706);
   static const amber700 = Color(0xFFB45309);
 

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/providers/app_provider.dart';
+import '../../../core/utils/number_utils.dart';
 import '../../../widgets/shared_widgets.dart';
-
-enum TransactionType { credit, debit }
+import '../../../core/models/models.dart';
 
 class RiderWalletScreen extends StatelessWidget {
   const RiderWalletScreen({super.key});
@@ -52,7 +51,7 @@ class RiderWalletScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          '₦${NumberFormat('#,##0', 'en_US').format(provider.walletBalance)}',
+                          '₦${provider.walletBalance.toLocaleString()}',
                           style: const TextStyle(
                             fontSize: 40,
                             fontWeight: FontWeight.w700,
@@ -166,7 +165,7 @@ class RiderWalletScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '${transaction.type == TransactionType.credit ? '+' : ''}₦${NumberFormat('#,##0', 'en_US').format(transaction.amount.abs())}',
+                          '${transaction.type == TransactionType.credit ? '+' : ''}₦${transaction.amount.abs().toLocaleString()}',
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
                             color: transaction.type == TransactionType.credit
