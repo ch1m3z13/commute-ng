@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/models/models.dart';
 import '../../../core/providers/app_provider.dart';
 import '../../../widgets/shared_widgets.dart';
 import 'rider_search_screen.dart';
+import 'rider_active_ride_screen.dart';
 
 class RiderHomeScreen extends StatelessWidget {
   final VoidCallback onLogout;
@@ -23,6 +25,9 @@ class RiderHomeScreen extends StatelessWidget {
         body: Center(child: CircularProgressIndicator()),
       );
     }
+
+    // Check for active booking
+    final activeBooking = provider.activeBooking;
 
     return Scaffold(
       backgroundColor: AppColors.slate50,
@@ -180,6 +185,25 @@ class RiderHomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(24),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
+                    // Active ride section (if exists)
+                    if (activeBooking != null &&
+                        (activeBooking.status == RideStatus.scheduled ||
+                            activeBooking.status == RideStatus.active)) ...[
+                      _ActiveRideCard(
+                        booking: activeBooking,
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => RiderActiveRideScreen(
+                                booking: activeBooking,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 32),
+                    ],
+
                     // Recent routes section
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -325,6 +349,164 @@ class RiderHomeScreen extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _ActiveRideCard extends StatelessWidget {
+  final Booking booking;
+  final VoidCallback onTap;
+
+  const _ActiveRideCard({
+    required this.booking,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final isActive = booking.status == RideStatus.active;
+
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: isActive
+                ? [AppColors.emerald600, AppColors.emerald700]
+                : [AppColors.amber600, AppColors.amber700],
+          ),
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: [
+            BoxShadow(
+              color: (isActive ? AppColors.emerald600 : AppColors.amber600)
+                  .withOpacity(0.3),
+              blurRadius: 20,
+              offset: const Offset(0, 8),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: AppColors.white.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Icon(
+                    isActive ? Icons.navigation : Icons.schedule,
+                    color: AppColors.white,
+                    size: 20,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        isActive ? 'RIDE IN PROGRESS' : 'UPCOMING RIDE',
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.white.withOpacity(0.8),
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        isActive ? 'Driver on the way' : booking.ride.departureTime,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Icon(
+                  Icons.arrow_forward,
+                  color: AppColors.white,
+                  size: 20,
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                UserAvatar(
+                  name: booking.ride.driverName,
+                  size: 40,
+                  verified: booking.ride.driverVerified,
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        booking.ride.driverName,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.white,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        '${booking.ride.car} • ${booking.ride.plateNumber}',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: AppColors.white.withOpacity(0.8),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: AppColors.white.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: AppColors.white.withOpacity(0.2),
+                ),
+              ),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.location_on,
+                    color: AppColors.white,
+                    size: 16,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      '${booking.ride.fromLocation} → ${booking.ride.toLocation}',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.white,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

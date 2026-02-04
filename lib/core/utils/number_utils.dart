@@ -1,4 +1,5 @@
 /// Number formatting utilities
+library;
 
 extension NumberFormatting on int {
   /// Formats number with thousand separators (e.g., 1000 -> "1,000")

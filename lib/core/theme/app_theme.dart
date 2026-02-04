@@ -56,7 +56,7 @@ class AppTheme {
       fontFamily: 'Inter',
       
       // Color scheme
-      colorScheme: ColorScheme.light(
+      colorScheme: const ColorScheme.light(
         primary: AppColors.emerald600,
         secondary: AppColors.lime400,
         surface: AppColors.white,

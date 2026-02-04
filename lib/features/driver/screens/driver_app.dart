@@ -192,7 +192,7 @@ class _DriverAppState extends State<DriverApp> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Column(
+                          const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
@@ -202,8 +202,8 @@ class _DriverAppState extends State<DriverApp> {
                                   color: AppColors.slate400,
                                 ),
                               ),
-                              const SizedBox(height: 8),
-                              const Text(
+                              SizedBox(height: 8),
+                              Text(
                                 '₦0.00',
                                 style: TextStyle(
                                   fontSize: 40,
@@ -242,7 +242,7 @@ class _DriverAppState extends State<DriverApp> {
                                   color: AppColors.white.withOpacity(0.1),
                                 ),
                               ),
-                              child: Column(
+                              child: const Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
@@ -252,8 +252,8 @@ class _DriverAppState extends State<DriverApp> {
                                       color: AppColors.slate400,
                                     ),
                                   ),
-                                  const SizedBox(height: 4),
-                                  const Text(
+                                  SizedBox(height: 4),
+                                  Text(
                                     'High',
                                     style: TextStyle(
                                       fontSize: 18,
@@ -279,7 +279,7 @@ class _DriverAppState extends State<DriverApp> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Trips',
                                     style: TextStyle(
                                       fontSize: 12,

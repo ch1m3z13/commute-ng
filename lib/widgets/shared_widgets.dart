@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme/app_theme.dart';
 
-/// Button variant types
 enum ButtonVariant {
   primary,
   secondary,
@@ -12,7 +11,6 @@ enum ButtonVariant {
   white,
 }
 
-/// Reusable button component matching React prototype
 class AppButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
@@ -181,8 +179,8 @@ class AppButton extends StatelessWidget {
   }
 }
 
-/// Reusable input field with label and icon
-class AppInput extends StatelessWidget {
+/// Reusable input field with label and icon - FIXED VERSION
+class AppInput extends StatefulWidget {
   final String? label;
   final String? placeholder;
   final String? value;
@@ -211,13 +209,44 @@ class AppInput extends StatelessWidget {
   });
 
   @override
+  State<AppInput> createState() => _AppInputState();
+}
+
+class _AppInputState extends State<AppInput> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.value ?? '');
+  }
+
+  @override
+  void didUpdateWidget(AppInput oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.value != oldWidget.value && widget.value != _controller.text) {
+      _controller.text = widget.value ?? '';
+      // Keep cursor at the end
+      _controller.selection = TextSelection.fromPosition(
+        TextPosition(offset: _controller.text.length),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (label != null) ...[
+        if (widget.label != null) ...[
           Text(
-            label!.toUpperCase(),
+            widget.label!.toUpperCase(),
             style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w700,
@@ -233,26 +262,27 @@ class AppInput extends StatelessWidget {
             boxShadow: AppTheme.shadowSm,
           ),
           child: TextField(
-            controller: value != null ? TextEditingController(text: value) : null,
-            onChanged: onChanged,
-            keyboardType: keyboardType,
-            obscureText: obscureText,
-            maxLength: maxLength,
-            maxLines: maxLines,
-            textInputAction: textInputAction,
+            controller: _controller,
+            onChanged: widget.onChanged,
+            keyboardType: widget.keyboardType,
+            obscureText: widget.obscureText,
+            maxLength: widget.maxLength,
+            maxLines: widget.maxLines,
+            textInputAction: widget.textInputAction,
+            textDirection: TextDirection.ltr,
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
               color: AppColors.slate800,
             ),
             decoration: InputDecoration(
-              hintText: placeholder,
+              hintText: widget.placeholder,
               hintStyle: const TextStyle(
                 color: AppColors.slate300,
                 fontWeight: FontWeight.w500,
               ),
-              prefixIcon: icon != null
-                  ? Icon(icon, color: AppColors.slate400, size: 20)
+              prefixIcon: widget.icon != null
+                  ? Icon(widget.icon, color: AppColors.slate400, size: 20)
                   : null,
               filled: true,
               fillColor: AppColors.white,
@@ -284,7 +314,7 @@ class AppInput extends StatelessWidget {
                   width: 1,
                 ),
               ),
-              errorText: errorText,
+              errorText: widget.errorText,
               contentPadding: const EdgeInsets.all(16),
               counterText: '',
             ),
