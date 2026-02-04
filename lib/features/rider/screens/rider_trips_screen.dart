@@ -53,10 +53,10 @@ class RiderTripsScreen extends StatelessWidget {
               )
             : CustomScrollView(
                 slivers: [
-                  SliverAppBar(
+                  const SliverAppBar(
                     floating: true,
                     snap: true,
-                    title: const Text('Your Trips'),
+                    title: Text('Your Trips'),
                     backgroundColor: AppColors.white,
                     foregroundColor: AppColors.slate900,
                     elevation: 0,

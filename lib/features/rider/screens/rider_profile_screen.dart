@@ -27,10 +27,10 @@ class RiderProfileScreen extends StatelessWidget {
       backgroundColor: AppColors.slate50,
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
+          const SliverAppBar(
             floating: true,
             snap: true,
-            title: const Text('Profile'),
+            title: Text('Profile'),
             backgroundColor: AppColors.white,
             foregroundColor: AppColors.slate900,
             elevation: 0,
